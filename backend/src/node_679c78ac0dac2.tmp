@@ -1,13 +1,12 @@
 const express = require('express'); // importa o express para ter acesso as funcionalidades
 const mongoose = require('mongoose');
-const routes = require('./routes'); // importa o modulo routes criado
+const routes = require('./routes');
 
 const app = express(); //cria a aplicação
 
-//conecta ao banco de dados
 mongoose.connect('mongodb+srv://lps1010:omnistack@cluster0-lidfu.mongodb.net/test?retryWrites=true&w=majority', {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 
 app.use(express.json()); //salva no express para ele entender body no tipo JSON
@@ -22,13 +21,11 @@ app.use(express.json()); //salva no express para ele entender body no tipo JSON
 
 // MongoDB (Banco não-relacional)
 
-app.post('/users', (request, response) => {
+app.get('/', (request, response) => {
     console.log(request.body);
-    // console.log(request.query); busca os query no insomnia 
-    return response.json({ message: 'Success' }); 
+    return response.json({ message: 'Hello World' });
 }); // faz uma requisição e devolve uma resposta ao cliente
 
-app.use(routes); // USA O ROUTES CRIADO - deve ir dps do express.json
+app.use(routes);
 app.listen(3333); // define a porta de acesso do servidor
 
-//extra criar método update (só atualiza nome, avatar, tecnologias, bio e localização ) and destroy

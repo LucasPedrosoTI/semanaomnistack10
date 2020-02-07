@@ -1,27 +1,13 @@
-const {Router} = require('express');
-const axios = require('axios');
-const Dev = require('./models/Dev') 
+const {Router} = require('express'); //moodulo de roteamento do EXPRESS
 
-const routes = Router();
+const DevController = require('./controllers/DevController');
+const SearchController = require('./controllers/searchController')
 
-routes.post('/devs', async (request, response) => {
-    const { github_username, techs } = request.body;
+const routes = Router(); //CRIA O "APP" ROUTER
 
-    const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
+routes.get('/devs', DevController.index);
+routes.post('/devs', DevController.store);
 
-    const { name = login, avatar_url, bio } = apiResponse.data;
+routes.get('/search', SearchController.index);
 
-    const techsArray = techs.split(',').map(tech => tech.trim());
-
-    const dev = await Dev.create({
-        github_username,
-        name,
-        avatar_url,
-        bio,
-        techs: techsArray,    
-        })
-
-  return response.json(dev);
-});
-
-module.exports = routes;
+module.exports = routes; //EXPORTA O MODULO PARA SER USADO EM INDEX
