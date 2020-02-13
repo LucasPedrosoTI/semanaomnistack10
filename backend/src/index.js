@@ -1,5 +1,6 @@
 const express = require('express'); // importa o express para ter acesso as funcionalidades
 const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes'); // importa o modulo routes criado
 
 const app = express(); //cria a aplicação
@@ -10,6 +11,7 @@ mongoose.connect('mongodb+srv://lps1010:omnistack@cluster0-lidfu.mongodb.net/tes
    useUnifiedTopology: true,
 });
 
+app.use(cors ());
 app.use(express.json()); //salva no express para ele entender body no tipo JSON
 
 // Métodos HTTP: get, post, put, delete
@@ -22,11 +24,7 @@ app.use(express.json()); //salva no express para ele entender body no tipo JSON
 
 // MongoDB (Banco não-relacional)
 
-app.post('/users', (request, response) => {
-    console.log(request.body);
-    // console.log(request.query); busca os query no insomnia 
-    return response.json({ message: 'Success' }); 
-}); // faz uma requisição e devolve uma resposta ao cliente
+
 
 app.use(routes); // USA O ROUTES CRIADO - deve ir dps do express.json
 app.listen(3333); // define a porta de acesso do servidor

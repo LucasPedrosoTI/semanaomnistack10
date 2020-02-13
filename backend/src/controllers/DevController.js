@@ -4,7 +4,7 @@ const parseStringAsArray = require('../utils/parseStringAsArray');
 //index, show, store, update, destroy
 
 module.exports = { 
-    async index (reques, response) {
+    async index (request, response) {
         const devs = await Dev.find();
 
         return response.json(devs);
@@ -35,9 +35,6 @@ module.exports = {
             techs: techsArray,
             location,
             })
-    } 
-
-      return response.json(dev);
-    }
-};
-
+        
+          return response.json(dev);
+        }}}     
