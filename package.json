@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/LucasPedrosoTI/semanaomnistack10.git",
   "author": "LucasPedrosoTI <lucas.pedrosoTI@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
